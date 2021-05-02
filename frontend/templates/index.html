@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
 {% block body %}
 	
 
@@ -10,10 +8,10 @@
 	<section class="home">
 		<!-- home bg -->
 		<div class="owl-carousel home__bg">
-			<div class="item home__cover" data-bg="img/home/home__bg.jpg"></div>
-			<div class="item home__cover" data-bg="img/home/home__bg2.jpg"></div>
-			<div class="item home__cover" data-bg="img/home/home__bg3.jpg"></div>
-			<div class="item home__cover" data-bg="img/home/home__bg4.jpg"></div>
+			<div class="item home__cover" data-bg="{% static 'img/home/home__bg.jpg' %}"></div>
+			<div class="item home__cover" data-bg="{% static 'img/home/home__bg2.jpg' %}"></div>
+			<div class="item home__cover" data-bg="{% static 'img/home/home__bg3.jpg' %}"></div>
+			<div class="item home__cover" data-bg="{% static 'img/home/home__bg4.jpg' %}"></div>
 		</div>
 		<!-- end home bg -->
 
@@ -36,7 +34,7 @@
 							<!-- card -->
 							<div class="card card--big">
 								<div class="card__cover">
-									<img src="img/covers/cover.jpg" alt="">
+									<img src="{% static 'img/covers/cover.jpg' %}" alt="">
 									<a href="#" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
@@ -57,7 +55,7 @@
 							<!-- card -->
 							<div class="card card--big">
 								<div class="card__cover">
-									<img src="img/covers/cover2.jpg" alt="">
+									<img src="{% static 'img/covers/cover2.jpg' %}" alt="">
 									<a href="#" class="card__play">
 										<i class="icon ion-ios-play"></i>
 									</a>
