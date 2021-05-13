@@ -33,13 +33,35 @@ class Movie(models.Model):
     cover_image = models.ImageField(upload_to="images/movies/covers")
     tags = models.ManyToManyField(Tag)
     slug = models.SlugField(blank=True)
+    trailer = models.URLField()
     parental_guidance = models.CharField(choices=PG, max_length=50)
     date_released = models.DateTimeField()
     
-class Trailer(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    link = models.CharField(max_length=255)
+    def __str__(self):
+        return self.title
     
+class TvSeries(models.Model):
+    title = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    plot = models.TextField()
+    cover_image = models.ImageField(upload_to="images/movies/covers")
+    tags = models.ManyToManyField(Tag)
+    slug = models.SlugField(blank=True)
+    trailer = models.URLField()
+    parental_guidance = models.CharField(choices=PG, max_length=50)
+    date_released = models.DateTimeField()
+    
+    def __str__(self):
+        return self.title
+
+class TvEpisode(models.Model):
+    name = models.CharField(max_length=255)
+    series = models.ForeignKey(TvSeries, on_delete=models.CASCADE)
+    plot = models.TextField()
+    date_released = models.DateTimeField()
+    
+    def __str__(self):
+        return f"{self.tvSeries.title} - {self.name}"
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
