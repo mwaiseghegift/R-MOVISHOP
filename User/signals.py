@@ -16,9 +16,9 @@ def create_user_profile(sender,instance,created,**kwargs):
 @receiver(post_save, sender=CustomUser)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-    # if instance.is_staff==True:
-    #     instance.staffuser.save()
-    # if instance.is_partner==True:
-    #     instance.partner.save()
-    # if instance.is_customer==True:
-    #     instance.customer.save()
+    if instance.is_staff==True:
+        instance.staffuser.save()
+    if instance.is_partner==True:
+        instance.partner.save()
+    if instance.is_customer==True:
+        instance.customer.save()

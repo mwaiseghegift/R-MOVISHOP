@@ -16,21 +16,29 @@ class CustomUser(AbstractUser):
     
     
 class StaffUser(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     position = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
     
+    def __str__(self):
+        return self.user.username
     
 class Customer(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
     
+    def __str__(self):
+        return self.user.username
+    
 class Partner(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
     location = models.CharField(max_length=255)
     contact = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.user.username
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -47,7 +55,7 @@ class Profile(models.Model):
         return self.user.username
     
 class PhoneNumber(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=13)
     otp = models.IntegerField()
     
