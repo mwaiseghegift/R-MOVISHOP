@@ -44,7 +44,7 @@
 					<div class="col-12">
 						<div class="header__content">
 							<!-- header logo -->
-							<a href="index.html" class="header__logo">
+							<a href="{% url 'movies:index' %}" class="header__logo">
 								<img src="{% static 'img/logo.svg' %}" alt="">
 							</a>
 							<!-- end header logo -->
@@ -56,8 +56,7 @@
 									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 
 									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-										<li><a href="index.html">Home slideshow bg</a></li>
-										<li><a href="index2.html">Home static bg</a></li>
+										<li><a href="{% url 'movies:index' %}">Home slideshow bg</a></li>
 									</ul>
 								</li>
 								<!-- end dropdown -->
