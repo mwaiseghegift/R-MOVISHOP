@@ -18,3 +18,9 @@ def catalog(request, *args, **kwargs):
 
 def pricing(request, *args, **kwargs):
     return render(request, 'pricing.html')
+
+def faq(request, *args, **kwargs):
+    return render(request, 'faq.html')
+
+def about(request, *args, **kwargs):
+    return render(request,'about.html')
