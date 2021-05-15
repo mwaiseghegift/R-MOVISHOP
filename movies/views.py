@@ -12,3 +12,6 @@ def IndexView(request, *args, **kwargs):
         'new_movies':new_movies,
     } 
     return render(request, 'index.html', {})
+
+def catalog(request, *args, **kwargs):
+    return render(request, 'catalog.html')
