@@ -15,3 +15,6 @@ def IndexView(request, *args, **kwargs):
 
 def catalog(request, *args, **kwargs):
     return render(request, 'catalog.html')
+
+def pricing(request, *args, **kwargs):
+    return render(request, 'pricing.html')
