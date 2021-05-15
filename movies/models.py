@@ -35,6 +35,7 @@ class Movie(models.Model):
     slug = models.SlugField(blank=True)
     trailer = models.URLField()
     parental_guidance = models.CharField(choices=PG, max_length=50)
+    is_hd = models.BooleanField(default=True)
     date_released = models.DateTimeField()
     
     def __str__(self):
@@ -49,6 +50,7 @@ class TvSeries(models.Model):
     slug = models.SlugField(blank=True)
     trailer = models.URLField()
     parental_guidance = models.CharField(choices=PG, max_length=50)
+    is_hd = models.BooleanField(default=True)
     date_released = models.DateTimeField()
     
     def __str__(self):
