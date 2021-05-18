@@ -9,5 +9,7 @@ class TvEpisodeInline(admin.TabularInline):
 class TvSeriesAdmin(admin.ModelAdmin):
     list_display = ('title','category','date_released')
     inlines = [TvEpisodeInline]
-    
 
+@admin.register(Movie)
+class MovieAdmin(admin.ModelAdmin):
+    list_display = ('title','category','date_released')
