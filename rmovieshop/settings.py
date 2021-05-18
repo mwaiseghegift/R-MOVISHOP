@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'movies',
     'User',
+    
+    'imagekit',
 ]
 
 MIDDLEWARE = [

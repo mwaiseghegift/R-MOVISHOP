@@ -1,6 +1,11 @@
 from django.db import models
 from django.utils.text import slugify
 from django.conf import settings
+from PIL import Image
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+
+
 User = settings.AUTH_USER_MODEL
 # Create your models here.
 PG = [
@@ -31,6 +36,10 @@ class Movie(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     plot = models.TextField()
     cover_image = models.ImageField(upload_to="images/movies/covers")
+    cover_thumbnail = ImageSpecField(source='cover_image',
+                                   processors = [ResizeToFill(270,400)],
+                                   format='JPEG',
+                                   options = {'quality':100})
     tags = models.ManyToManyField(Tag)
     slug = models.SlugField(blank=True)
     trailer = models.URLField()
@@ -45,7 +54,11 @@ class TvSeries(models.Model):
     title = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     plot = models.TextField()
-    cover_image = models.ImageField(upload_to="images/movies/covers")
+    cover_image = models.ImageField(upload_to="images/series/covers")
+    cover_thumbnail = ImageSpecField(source='cover_image',
+                                   processors = [ResizeToFill(270,400)],
+                                   format='JPEG',
+                                   options = {'quality':100})
     tags = models.ManyToManyField(Tag)
     slug = models.SlugField(blank=True)
     trailer = models.URLField()
