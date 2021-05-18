@@ -13,3 +13,6 @@ class TvSeriesAdmin(admin.ModelAdmin):
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
     list_display = ('title','category','date_released')
+    
+admin.site.register(Category)
+admin.site.register(Tag)
