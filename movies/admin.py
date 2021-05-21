@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import TvSeries, TvEpisode, Movie, MovieReview, Category, Tag
 # Register your models here.
+admin.site.site_header = "Retech E-Movies"
+admin.site.site_header = "Retech E-Movies"
 
 class TvEpisodeInline(admin.TabularInline):
     model = TvEpisode
