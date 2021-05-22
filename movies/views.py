@@ -35,6 +35,7 @@ def catalog(request, *args, **kwargs):
     return render(request, 'catalog.html')
 
 def pricing(request, *args, **kwargs):
+    movies = Movie.objects.all()
     return render(request, 'pricing.html')
 
 def faq(request, *args, **kwargs):
