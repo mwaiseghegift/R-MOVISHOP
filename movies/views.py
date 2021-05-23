@@ -8,9 +8,9 @@ def IndexView(request, *args, **kwargs):
     new_series = TvSeries.objects.all().order_by("-date_released")[:5]
     
     context = {
-        'new_series':new_movies,
+        'new_series':new_series,
         'new_movies':new_movies,
-        'all_new':new_movies and new_series
+        'all_new':list(new_movies)+list(new_series)
     } 
     return render(request, 'index.html', context)
 
