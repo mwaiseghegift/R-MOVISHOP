@@ -10,6 +10,7 @@ def IndexView(request, *args, **kwargs):
     context = {
         'new_series':new_movies,
         'new_movies':new_movies,
+        'all_new':new_movies and new_series
     } 
     return render(request, 'index.html', context)
 
