@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 from django.utils.text import slugify
 from django.conf import settings
@@ -50,6 +51,12 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
     
+    def get_tags(self):
+        return self.tags.all()
+    
+    def get_absolute_url(self):
+        return reverse("movies:model_detail", kwargs={"slug":self.slug, "pk": self.pk})
+    
 class TvSeries(models.Model):
     title = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -68,6 +75,13 @@ class TvSeries(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def get_tags(self):
+        return self.tags.all()
+    
+    def get_absolute_url(self):
+        return reverse("movies:model_detail", kwargs={"slug":self.slug, "pk": self.pk})
+    
 
 class TvEpisode(models.Model):
     name = models.CharField(max_length=255)
