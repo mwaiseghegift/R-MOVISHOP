@@ -4,14 +4,14 @@ from .models import Movie, TvSeries
 
 
 def IndexView(request, *args, **kwargs):
-    new_movies = Movie.objects.all().order_by("-date_released")
-    new_series = TvSeries.objects.all().order_by("-date_released")
+    new_movies = Movie.objects.all().order_by("-date_released")[:5]
+    new_series = TvSeries.objects.all().order_by("-date_released")[:5]
     
     context = {
         'new_series':new_movies,
         'new_movies':new_movies,
     } 
-    return render(request, 'index.html', {})
+    return render(request, 'index.html', context)
 
 
 def MovieDetailView(request, slug,*args, **kwargs):
