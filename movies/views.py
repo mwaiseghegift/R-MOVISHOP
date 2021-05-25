@@ -11,6 +11,7 @@ def IndexView(request, *args, **kwargs):
     context = {
         'new_series':new_series[:18],
         'new_movies':new_movies[:18],
+        # 'animations':Movie.objects.filter(category="animation"),
         'all_new': sorted(all_things, key=lambda x: x.date_released, reverse=True)[:10],
         'new_releases': sorted(all_things, key=lambda x: x.date_released, reverse=True)[:6]
     } 
