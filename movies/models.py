@@ -101,9 +101,13 @@ class TvEpisode(models.Model):
     
     def __str__(self):
         return f"{self.tvSeries.title} - {self.name}"
-class Rating(models.Model):
+class MovieRating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    
+class TvRating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    show = models.ForeignKey(TvSeries, on_delete=models.CASCADE)
     
 class MovieReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -111,3 +115,8 @@ class MovieReview(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)
     
+class TvReview(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+    is_approved = models.BooleanField(default=False)
