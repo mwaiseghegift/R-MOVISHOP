@@ -54,8 +54,13 @@ class Movie(models.Model):
     def get_tags(self):
         return self.tags.all()
     
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug=slugify(self.title)
+        return super(Movie, self).save(*args, **kwargs)
+    
     def get_absolute_url(self):
-        return reverse("movies:model_detail", kwargs={"slug":self.slug, "pk": self.pk})
+        return reverse("movies:movie-detail", kwargs={"slug":self.slug, "pk": self.pk})
     
 class TvSeries(models.Model):
     title = models.CharField(max_length=255)
@@ -79,8 +84,13 @@ class TvSeries(models.Model):
     def get_tags(self):
         return self.tags.all()
     
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug=slugify(self.title)
+        return super(TvSeries, self).save(*args, **kwargs)
+    
     def get_absolute_url(self):
-        return reverse("movies:model_detail", kwargs={"slug":self.slug, "pk": self.pk})
+        return reverse("movies:series-detail", kwargs={"slug":self.slug, "pk": self.pk})
     
 
 class TvEpisode(models.Model):

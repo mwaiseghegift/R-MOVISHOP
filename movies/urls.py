@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import (IndexView, catalog, pricing, faq, about)
+from .views import (IndexView, catalog, pricing, faq, about,
+                    MovieDetailView, TvSerieDetailView)
 
 app_name = 'movies'
 
@@ -8,5 +9,7 @@ urlpatterns = [
     path("catalog/", catalog, name='catalog'),
     path('pricing/', pricing, name='pricing'),
     path('faq/', faq, name="faq"),
-    path('about/', about, name='about')
+    path('about/', about, name='about'),
+    path('movies/<slug>/<int:pk>/', MovieDetailView, name='movie-detail'),
+    path('shows/<slug>/<int:pk>/', TvSerieDetailView, name='series-detail'),
 ]
