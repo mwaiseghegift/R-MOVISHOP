@@ -18,7 +18,7 @@
 					<div class="sign__content">
 						<!-- registration form -->
 						
-						<form action="" method="POST" class="sign__form">{% csrf_token %}
+						<form action="{% url 'user:register' %}" method="POST" class="sign__form">{% csrf_token %}
 							{% include 'partials/messages.html' %}
 							<a href="{% url 'movies:index' %}" class="sign__logo">
 								<img src="{% static 'img/logo.svg' %}" alt="">
@@ -29,7 +29,7 @@
 							</div>
 
 							<div class="sign__group">
-								<input name="email" type="text" class="sign__input" placeholder="Email">
+								<input name="email" type="email" class="sign__input" placeholder="Email">
 							</div>
 
 							<div class="sign__group">

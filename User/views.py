@@ -14,7 +14,8 @@ from .utils import token_gen
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from .forms import ResetEmailForm
 
-User = settings.AUTH_USER_MODEL
+from django.contrib.auth import get_user_model
+User = get_user_model()
 # Create your views here.
 
 #africanstalking api
@@ -86,6 +87,7 @@ def RegisterView(request):
         
         if User.objects.filter(username=username).exists():
             messages.error(request, "A user with the username exists")
+            return redirect('user:register')
         if User.objects.filter(email=email).exists():
             messages.error(request, "The Email has already been taken")
         if  Profile.objects.filter(phone=phone).exists():
@@ -111,7 +113,7 @@ def RegisterView(request):
             profile = Profile.objects.get(user=user)
             profile.phone = phone
             phone_database = PhoneNumber(user=user,
-                                     phone=phone,
+                                     phone_number=phone,
                                      otp = random.randint(100000,999999),
                                      is_verified=False)
             phone_database.save()
