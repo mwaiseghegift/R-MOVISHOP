@@ -75,12 +75,16 @@ def RegisterView(request):
         
         if username == "":
             messages.error(request, "Username is required")
+            return redirect('user:register')
         if email == "":
             messages.error(request, "Email is required")
+            return redirect('user:register')
         if phone == "":
             messages.error(request, "Phone is required")
+            return redirect('user:register')
         if password1 == "":
             messages.error(request, "Password is required")
+            return redirect('user:register')
         if password2 == "":
             messages.error(request, "Repeat Password is required")
             return redirect('user:register')
@@ -90,6 +94,7 @@ def RegisterView(request):
             return redirect('user:register')
         if User.objects.filter(email=email).exists():
             messages.error(request, "The Email has already been taken")
+            return redirect('user:register')
         if  Profile.objects.filter(phone=phone).exists():
             messages.error(request, "The phone number already exists")
             return redirect('user:register')
@@ -97,6 +102,7 @@ def RegisterView(request):
         
         if password1 != password2:
             messages.error(request, "Passwords do not match")
+            return redirect('user:register')
         if len(password1)<6:
             messages.error(request,"Password is too short")
             return redirect('user:register') 
@@ -145,7 +151,7 @@ def RegisterView(request):
             
             mail_body = f"hi {user.username} click the link below to verify your account\n {activate_url}"
             mail = send_mail (mail_subject, mail_body,'noreply@retech.com',[email], fail_silently=False)
-            messages.success(request, "User has been created")
+            messages.success(request, "Verification email has been sent to your email")
             return redirect('user:login')
             
     return render(request, 'auth/register.html', {})
