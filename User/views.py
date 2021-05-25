@@ -66,8 +66,6 @@ def LogOutView(request, *args, **kwargs):
 def RegisterView(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         password1 = request.POST.get('password1')
@@ -105,8 +103,7 @@ def RegisterView(request):
         else:
             user = User.objects.create_user(username=username, 
                                             email=email, 
-                                            first_name=first_name,
-                                            last_name=last_name)
+                                            )
             user.set_password(password1)
             user.is_active=False
             user.save()
@@ -163,7 +160,8 @@ def VerificationView(request,uidb64, token):
         user.save()
         messages.info(request, "account verified")  
         return redirect("user:login")
-    return render(request,'auth/activation_failed.html')
+    messages.error(request, "Oops, Something is wrong with the link, Please request anaother")
+    return render(request,'auth/login')
 
 
 def RequestResetEmail(request):
@@ -200,9 +198,9 @@ def RequestResetEmail(request):
                 return redirect('user:login')
             else:
                 messages.error(request, "Sorry, there is no user with that email")
-                return redirect('accounts:request-reset-email')
+                return redirect('user:request-reset-email')
 
-    return render(request, 'auth/reset_email_form.html', {})
+    return render(request, 'auth/reset-password-form.html')
   
 def ResetPasswordView(request, uidb64, token):
     context = {

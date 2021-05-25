@@ -17,26 +17,31 @@
 				<div class="col-12">
 					<div class="sign__content">
 						<!-- registration form -->
+						
 						<form action="" method="POST" class="sign__form">{% csrf_token %}
-							<a href="index.html" class="sign__logo">
+							{% include 'partials/messages.html' %}
+							<a href="{% url 'movies:index' %}" class="sign__logo">
 								<img src="{% static 'img/logo.svg' %}" alt="">
 							</a>
-							{% include 'partials/messages.html' %}
 
 							<div class="sign__group">
-								<input type="text" class="sign__input" placeholder="Name">
+								<input name="username" type="text" class="sign__input" placeholder="Name">
 							</div>
 
 							<div class="sign__group">
-								<input type="text" class="sign__input" placeholder="Email">
+								<input name="email" type="text" class="sign__input" placeholder="Email">
 							</div>
 
 							<div class="sign__group">
-								<input type="password" class="sign__input" placeholder="Password">
+								<input name="phone" type="text" class="sign__input" placeholder="Phone Number">
 							</div>
 
 							<div class="sign__group">
-								<input type="password" class="sign__input" placeholder="Repeat Password">
+								<input name="password1" type="password" class="sign__input" placeholder="Password">
+							</div>
+
+							<div class="sign__group">
+								<input name="password2" type="password" class="sign__input" placeholder="Repeat Password">
 							</div>
 
 							<div class="sign__group sign__group--checkbox">
