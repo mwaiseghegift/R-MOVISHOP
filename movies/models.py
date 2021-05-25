@@ -119,4 +119,4 @@ class TvReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
-    is_approved = models.BooleanField(default=False)
+    is_approved = models.BooleanField(default=False)    

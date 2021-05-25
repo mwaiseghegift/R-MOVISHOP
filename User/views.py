@@ -52,7 +52,7 @@ def LogInView(request, *args, **kwargs):
             #     recipients = [str(user_phone.phone)]
             #     response = sms.send(sms_content, recipients)
             #     return HttpResponseRedirect(reverse())
-            return redirect('products:index')
+            return redirect('movies:index')
         else:
             messages.error(request,"Ivalid Login")
             return render(request,'auth/login.html')
@@ -61,7 +61,7 @@ def LogInView(request, *args, **kwargs):
 def LogOutView(request, *args, **kwargs):
     logout(request)
     messages.success(request,"You have successfully Logged Out")
-    return redirect('products:index')
+    return redirect('movies:index')
 
 def RegisterView(request):
     if request.method == 'POST':

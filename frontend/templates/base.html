@@ -87,8 +87,8 @@
 
 									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
 										<li><a href="{% url 'movies:about' %}">About</a></li>
-										<li><a href="signin.html">Sign In</a></li>
-										<li><a href="signup.html">Sign Up</a></li>
+										<li><a href="{% url 'user:login' %}">Sign In</a></li>
+										<li><a href="{% url 'user:register' %}">Sign Up</a></li>
 										<li><a href="404.html">404 Page</a></li>
 									</ul>
 								</li>
@@ -102,7 +102,7 @@
 									<i class="icon ion-ios-search"></i>
 								</button>
 
-								<a href="signin.html" class="header__sign-in">
+								<a href="{% url 'user:login' %}" class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
 									<span>sign in</span>
 								</a>

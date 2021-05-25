@@ -42,7 +42,7 @@
 					<div class="sign__content">
 						<!-- authorization form -->
 						<form action="#" class="sign__form">
-							<a href="{% url 'rmovies:index' %}" class="sign__logo">
+							<a href="{% url 'movies:index' %}" class="sign__logo">
 								<img src="img/logo.svg" alt="">
 							</a>
 
@@ -61,7 +61,7 @@
 							
 							<button class="sign__btn" type="button">Sign in</button>
 
-							<span class="sign__text">Don't have an account? <a href="signup.html">Sign up!</a></span>
+							<span class="sign__text">Don't have an account? <a href="{% url 'user:register' %}">Sign up!</a></span>
 
 							<span class="sign__text"><a href="#">Forgot password?</a></span>
 						</form>
