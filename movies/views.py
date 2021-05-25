@@ -34,7 +34,7 @@ def MovieDetailView(request, slug,*args, **kwargs):
 
 def TvListView(request, *args, **kwargs):
     context = {
-        'series':Movie.objects.filter(date_released__lte=timezone.now())
+        'series':TvSeries.objects.filter(date_released__lte=timezone.now())
     }
     return render(request, 'series.html', context)
 
