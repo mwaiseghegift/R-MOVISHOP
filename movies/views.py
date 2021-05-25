@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Movie, TvSeries
+from django.utils import timezone
 # Create your views here.
 
 
@@ -17,6 +18,11 @@ def IndexView(request, *args, **kwargs):
     } 
     return render(request, 'index.html', context)
 
+def MovieListView(request, *args, **kwargs):
+    context = {
+        'movies':Movie.objects.filter(date_released__lte=timezone.now())
+    }
+    return render(request, 'movies.html', context)
 
 def MovieDetailView(request, slug,*args, **kwargs):
     movie = get_object_or_404(Movie, slug=slug)
@@ -26,6 +32,11 @@ def MovieDetailView(request, slug,*args, **kwargs):
     }
     return render(request, 'movie_detail.html', context)
 
+def TvListView(request, *args, **kwargs):
+    context = {
+        'series':Movie.objects.filter(date_released__lte=timezone.now())
+    }
+    return render(request, 'series.html', context)
 
 def TvSerieDetailView(request, slug, *args, **kwargs):
     serie = get_object_or_404(TvSeries, slug=slug)
