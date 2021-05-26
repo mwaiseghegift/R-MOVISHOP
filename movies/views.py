@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Movie, TvSeries
+from .models import Movie, TvSeries, Tag
 from django.utils import timezone
 # Create your views here.
 
@@ -58,4 +58,15 @@ def faq(request, *args, **kwargs):
 
 def about(request, *args, **kwargs):
     return render(request,'about.html')
+
+def TagView(request, slug,*args, **kwargs):
+    tag = get_object_or_404(Tag, slug=slug)
+    movies = Movie.objects.filter(tags=tag)
+    series = TvSeries.objects.filter(tags=tag)
+    all_movies = list(movies)+list(series)
+    
+    context = {
+        'movies':sorted(all_movies, key=lambda x: x.date_released, reverse=True),
+    }
+    return render(request, 'movies.html', context)
 
